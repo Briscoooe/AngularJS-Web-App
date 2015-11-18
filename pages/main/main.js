@@ -1,5 +1,5 @@
 angular.module('rtfmApp')
-.controller('mainPageController', function($scope, $location, userService, threadService){
+.controller('mainPageController', function($scope, $location, userService, threadService, fb, $firebaseAuth){
 
     $scope.user = userService.getLoggedInUser();
 
@@ -26,8 +26,10 @@ angular.module('rtfmApp')
         $scope.newThreadTitle = ''; //Clear the text in the input box
     }
 
-    $scope.logout = function(){        
-        //Todo: actually log out;
+    $scope.logout = function(){
+        var ref = new Firebase(fb.url);
+        var authObj = $firebaseAuth(ref);        
+        authObj.$unauth()
         $location.path('login');
     }
 
