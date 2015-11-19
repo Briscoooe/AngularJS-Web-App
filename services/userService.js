@@ -9,9 +9,10 @@ angular.module('rtfmApp').service('userService', function($firebaseAuth, fb, $lo
     var authObj = $firebaseAuth(ref);
 
     // Set the user object if already logged in on page refresh
-    //var info = authObj.$getAuth();
-    //user.name = info.google.displayName;
-
+    if(authObj.$getAuth()) {
+        var info = authObj.$getAuth();
+        user.name = info.google.displayName;
+    }
 
     this.getLoggedInUser = function(){
         return user;
@@ -22,7 +23,7 @@ angular.module('rtfmApp').service('userService', function($firebaseAuth, fb, $lo
     		$location.path('main')
             var username = authData.google.displayName;
             var userid = authData.google.id;
-            user.name = name;
+            user.name = username
             var usersRef = ref.child("users");
             usersRef.child(userid).set({
                 name: username,
@@ -34,6 +35,10 @@ angular.module('rtfmApp').service('userService', function($firebaseAuth, fb, $lo
     }
 
     this.logout = function() {
+        var info = authObj.$getAuth();
+        var userid = info.google.id;
+        var userRef = new Firebase(fb.url + "/users/" + userid);
+        userRef.remove();
         authObj.$unauth()
         $location.path('login');
     }
