@@ -27,10 +27,7 @@ angular.module('rtfmApp')
     }
 
     $scope.logout = function(){
-        var ref = new Firebase(fb.url);
-        var authObj = $firebaseAuth(ref);        
-        authObj.$unauth()
-        $location.path('login');
+        userService.logout();
     }
 
 });

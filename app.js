@@ -12,7 +12,10 @@ angular.module('rtfmApp', ['ngRoute', 'firebase'])
             }).
             when('/thread/:threadId', {
                 templateUrl: 'pages/thread/thread.html'
-            }).
+            })./*
+            when('/user/:userId', {
+                templateUrl: 'pages/chat/chat.html'
+            })*/
             otherwise({
                 redirectTo: '/login'
             });

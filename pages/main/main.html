@@ -10,4 +10,11 @@
             <a ng-href="#/thread/{{thread.$id}}"> {{thread.title}} by {{thread.username}}</a>
         </div>
     </div>
+    <div>
+        <h2>Chat</h2>
+        <div ng-repeat="user in users">
+            <div ng-if="!user.username.length">There are no users logged in</div>
+            <a ng-href="#/user/{{user.uid}}">{{user.username}} chat</a>
+        </div>
+    </div>
 </div>
