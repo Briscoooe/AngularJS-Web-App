@@ -1,4 +1,4 @@
-angular.module('rtfmApp').service('userService', function($firebaseAuth, fb, $location){
+angular.module('rtfmApp').service('userService', function($firebaseArray, $firebaseAuth, fb, $location){
 
     //Todo: don't hardcode this
     var user = {
@@ -17,6 +17,11 @@ angular.module('rtfmApp').service('userService', function($firebaseAuth, fb, $lo
     this.getLoggedInUser = function(){
         return user;
     }
+
+    this.getAllUsers = function(){
+        var ref = new Firebase(fb.url + '/users');
+        return $firebaseArray(ref);
+    };
 
     this.loginWithGoogle = function(){
     	authObj.$authWithOAuthPopup("google").then(function(authData) {
