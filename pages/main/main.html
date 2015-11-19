@@ -13,10 +13,7 @@
     <div>
         <h2>Chat</h2>
         <div ng-repeat="user1 in users">
-            <a ng-href="#"> {{user1.name}} | chat</a>
-        <!--
-            <div ng-if="!user.username.length">There are no users logged in</div>
-            <a ng-href="#/user/{{user.uid}}">{{user.username}} chat</a>-->
+            <a ng-href="#/users/{{user.$chatid}}"> {{user1.name}} | chat</a>
         </div>
     </div>
 </div>

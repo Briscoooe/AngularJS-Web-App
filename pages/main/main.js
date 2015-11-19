@@ -11,8 +11,7 @@ angular.module('rtfmApp')
         console.log($scope.threads)
     });
 
-    $scope.users = userService.getAllUsers();
-    
+    $scope.users = userService.getLoggedInUsers();
 
     $scope.addThread = function(){  
         if(!$scope.newThreadTitle){

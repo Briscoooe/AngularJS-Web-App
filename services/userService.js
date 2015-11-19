@@ -18,9 +18,25 @@ angular.module('rtfmApp').service('userService', function($firebaseArray, $fireb
         return user;
     }
 
-    this.getAllUsers = function(){
+    this.getLoggedInUsers = function(){
+        var info = authObj.$getAuth();
+        var userid = info.google.id;
         var ref = new Firebase(fb.url + '/users');
-        return $firebaseArray(ref);
+        var array = $firebaseArray(ref);
+
+        //array = $.grep(array, function(e){ 
+             //return e.id != userid; 
+        //});
+        /*
+        for(var i = 0; i < array.length; i++) {
+            if(array[i].id == userid) {
+                array.splice(i, 1);
+                break;
+            }
+        }*/
+
+        console.log("array after splice: ", array);
+        return array;
     };
 
     this.loginWithGoogle = function(){
@@ -43,7 +59,6 @@ angular.module('rtfmApp').service('userService', function($firebaseArray, $fireb
         var info = authObj.$getAuth();
         var userid = info.google.id;
         var userRef = new Firebase(fb.url + "/users/" + userid);
-        userRef.remove();
         authObj.$unauth()
         $location.path('login');
     }
