@@ -20,12 +20,35 @@ angular.module('rtfmApp')
         var newThread = {       
             title: $scope.newThreadTitle,
             username: $scope.user.name,            
-            comments: []
+            comments: [],
+            votes: 0
         };
 
         $scope.threads.$add(newThread);
 
         $scope.newThreadTitle = ''; //Clear the text in the input box
+    }
+
+    $scope.upvote = function(threadId, threadVotes) {
+        //var currentUser = userService.getLoggedInUser();
+        var newVotes = threadVotes + 1;
+        var ref = new Firebase(fb.url);
+        var threadRef = ref.child("threads");
+        threadRef.child(threadId).update({
+            votes: newVotes
+        });
+
+    }
+
+    $scope.downvote = function(threadId, threadVotes) {
+        //var currentUser = userService.getLoggedInUser();
+        var newVotes = threadVotes - 1;
+        var ref = new Firebase(fb.url);
+        var threadRef = ref.child("threads");
+        threadRef.child(threadId).update({
+            votes: newVotes
+        });
+
     }
 
     $scope.logout = function(){

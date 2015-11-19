@@ -1,5 +1,5 @@
 angular.module('rtfmApp')
-.controller('threadPageController', function($scope, $location, $routeParams, threadService, userService){
+.controller('threadPageController', function($scope, $location, $routeParams, threadService, fb, userService){
     var threadId = $routeParams.threadId;
 
     $scope.newComment = '';
@@ -16,7 +16,9 @@ angular.module('rtfmApp')
 
         var newComment = {
             text: $scope.newComment,
-            username: currentUser.name
+            username: currentUser.name,
+            votes: 0,
+            id: Firebase.ServerValue.TIMESTAMP
         };
 
         $scope.thread.comments = $scope.thread.comments || [];
@@ -25,5 +27,49 @@ angular.module('rtfmApp')
         $scope.newComment = ''; //Clear the input box
     }
 
+     $scope.upvote = function(threadId, commentId, commentVotes) {
+        //var currentUser = userService.getLoggedInUser();
+        var newVotes = commentVotes + 1;
+        var ref = new Firebase(fb.url + "/threads/" + threadId);
+        var commentRef = ref.child("comments");
+        var key;
 
+        commentRef.once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var childData = childSnapshot.val();
+                if(childData.id === commentId)
+                {  
+                    console.log("Child Data id: ", childData.id);
+                    key = childSnapshot.key();
+                    console.log("Key = ", key);
+                }
+            });
+        });
+
+        commentRef.child(key).update({
+            votes: newVotes
+        });
+    }
+
+    $scope.downvote = function(threadId, commentId, commentVotes) {
+        //var currentUser = userService.getLoggedInUser();
+        var newVotes = commentVotes - 1;
+        var ref = new Firebase(fb.url + "/threads/" + threadId);
+        var commentRef = ref.child("comments");
+        var key;
+        
+        commentRef.once("value", function(snapshot) {
+            snapshot.forEach(function(childSnapshot) {
+                var childData = childSnapshot.val();
+                if(childData.id === commentId)
+                {
+                    key = childSnapshot.key();
+                }
+            });
+        });
+
+        commentRef.child(key).update({
+            votes: newVotes
+        });
+    }
 });

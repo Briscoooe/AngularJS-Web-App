@@ -35,7 +35,7 @@ angular.module('rtfmApp').service('userService', function($firebaseArray, $fireb
             }
         }*/
 
-        console.log("array after splice: ", array);
+        //console.log("array after splice: ", array);
         return array;
     };
 
