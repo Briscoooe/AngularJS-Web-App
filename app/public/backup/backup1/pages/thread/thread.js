@@ -1,5 +1,5 @@
 angular.module('rtfmApp')
-.controller('threadPageController', function($scope, $location, $routeParams, threadService, fb, userService){
+.controller('threadPageController', function($scope, $location, $routeParams, threadService, fb, commentId, userService){
     var threadId = $routeParams.threadId;
 
     $scope.newComment = '';
@@ -13,13 +13,16 @@ angular.module('rtfmApp')
         }       
 
         var currentUser = userService.getLoggedInUser();
+        commentId.id += 1;
 
         var newComment = {
             text: $scope.newComment,
             username: currentUser.name,
             votes: 0,
-            id: Firebase.ServerValue.TIMESTAMP
+            id: commentId.id
         };
+
+        console.log("CommendId: ", commentId.id);
 
         $scope.thread.comments = $scope.thread.comments || [];
         $scope.thread.comments.push(newComment);
@@ -27,21 +30,19 @@ angular.module('rtfmApp')
         $scope.newComment = ''; //Clear the input box
     }
 
-     $scope.upvote = function(threadId, commentId, commentVotes) {
-        //var currentUser = userService.getLoggedInUser();
+     $scope.upvote = function(threadId, comment, commentVotes) {
         var newVotes = commentVotes + 1;
         var ref = new Firebase(fb.url + "/threads/" + threadId);
         var commentRef = ref.child("comments");
-        var key;
+        var key = "";
 
         commentRef.once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
-                if(childData.id === commentId)
+                console.log("Comment Id: ", comment.Id);
+                if(childData.id == comment.id)
                 {  
-                    console.log("Child Data id: ", childData.id);
                     key = childSnapshot.key();
-                    console.log("Key = ", key);
                 }
             });
         });
@@ -51,18 +52,17 @@ angular.module('rtfmApp')
         });
     }
 
-    $scope.downvote = function(threadId, commentId, commentVotes) {
-        //var currentUser = userService.getLoggedInUser();
+    $scope.downvote = function(threadId, comment, commentVotes) {
         var newVotes = commentVotes - 1;
         var ref = new Firebase(fb.url + "/threads/" + threadId);
         var commentRef = ref.child("comments");
-        var key;
-        
+        var key = "";
+
         commentRef.once("value", function(snapshot) {
             snapshot.forEach(function(childSnapshot) {
                 var childData = childSnapshot.val();
-                if(childData.id === commentId)
-                {
+                if(childData.id == comment.id)
+                {  
                     key = childSnapshot.key();
                 }
             });
@@ -72,4 +72,5 @@ angular.module('rtfmApp')
             votes: newVotes
         });
     }
+
 });

@@ -1,0 +1,76 @@
+<div ng-controller="mainPageController">
+    <!-- Navbar -->
+    <div class="col-md-12 img-rounded nav-bar white-background dark-green-border">
+        <h3>
+            Welcome {{user.name}}! <button class="btn-danger img-rounded" ng-click="logout()" id="LogoutBtn">Logout</button>
+        </h3>
+    </div>
+    <!-- End navbar -->
+
+    <!-- Main body container -->
+    <div id="main-container" class="col-md-12">
+
+        <!-- Subject sidebar container -->
+        <div id="subject-container" class="col-md-4 img-rounded dark-green-border white-background">
+
+            <!-- Search a thread -->
+            <div id="search-threads" class="input-group col-md-12 img-rounded">
+                <input type="search" class="col-xs-5 form-control" ng-model="searchThread" placeholder="Search threads...">
+            </div>
+
+            <!-- Add new thread -->
+            <div id="new-thread" class="input-group col-md-12 img-rounded" ng-switch on="createNewThread">
+                <div ng-switch-when="false">
+                    <button id="create-thread-btn" class="col-md-12 btn-success img-rounded" ng-click="beginAddThread()"><span style="font-size:20px">+ Create new thread</span></button>
+                </div>
+                <div ng-switch-when="true" class="input-group img-rounded">
+                    <input type="text" class="col-xs-5 form-control thread-input" ng-model="$parent.newThreadTitle" placeholder="Enter thread title..."/>
+                    <input type="text" class="col-xs-5 form-control thread-input" ng-model="$parent.newThreadSubject" typeahead="thread.subject as thread in getAllSubjects($subject)" placeholder="Enter thread subject..."/>
+                    <span class="col-md-6"></span><button class="col-md-6 btn-success img-rounded" ng-click="addThread()">Add thread</button>
+                </div>
+            </div> 
+            <!-- End add new thread -->
+
+            <!-- Subject List -->
+            <div class="list-group">
+                <h2>Subjects</h2>
+                <div ng-model="subjects" ng-repeat="thread in threads | unique:'subject'" class="list-group-item">
+                    <a ng-click="searchSubject(thread.subject)" class="list-group-item-text">{{thread.subject}}</a>
+                </div>
+            </div>
+            <!-- End subject list -->
+        </div>
+        <!-- End subject container -->
+
+
+        <!-- Thread list -->
+        <div id="thread-list" class="col-md-8 dark-green-border img-rounded white-background">
+            <div class="list-group img-rounded">
+                <!-- Display thread loop -->
+                <div ng-repeat="thread in threads | filter:searchThread | orderObjectBy:'votes' as threadList" class="list-group-item col-md-12">
+                    <!-- Thread div -->
+                    <div class="col-md-10">
+                        <span class="glyphicon glyphicon-bullhorn glyphicon-info"></span>
+                        <a ng-href="#/thread/{{thread.$id}}" class="list-group-item-text" href ng-click="showThread(thread)">
+                        <span style="font-size:20pt">{{thread.title}}</span><br></a>
+                        <span class="img-rounded subject-label">{{thread.subject}}</span>
+                        <span class="glyphicon glyphicon-user glyphicon-info" ></span>{{thread.username}}
+                        <span class="glyphicon glyphicon-calendar glyphicon-info"></span>{{thread.dateAdded | date:'dd-MMM-yyyy'}}
+                    </div>
+                    <!-- End thread div -->
+
+                    <!-- Comment count -->
+                    <div id="num-comments" class="col-md-2 img-rounded">
+                        <span class="glyphicon glyphicon-comment" style="margin:.5em;"></span>{{thread.numComments}}
+                    </div>
+                    <!-- End comment count -->
+                </div>
+                <!-- End thread loop -->
+                <span class="col-md-1"></span><div ng-if="threadList.length === 0"><h3>No results</h3></div>
+            </div>
+        </div>
+        <!-- End thread list -->
+    </div>
+    <!-- End main body container -->
+</div>
+<!-- End ng-controller -->

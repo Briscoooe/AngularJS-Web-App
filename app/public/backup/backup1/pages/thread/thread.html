@@ -7,8 +7,8 @@
     </div>
     <div>
         <div ng-repeat="comment in thread.comments">{{comment.username}}: {{comment.text}} {{comment.votes}}
-            <button ng-click="upvote(thread.$id, comment.id, comment.votes)">Upvote</button>
-            <button ng-click="downvote(thread.$id, comment.id, comment.votes)">Downvote</button>
+            <button ng-click="upvote(thread.$id, comment, comment.votes)">Upvote</button>
+            <button ng-click="downvote(thread.$id, comment, comment.votes)">Downvote</button>
         </div>
         <div ng-if="!thread.comments.length">There are no comments on this thread</div>
     </div>

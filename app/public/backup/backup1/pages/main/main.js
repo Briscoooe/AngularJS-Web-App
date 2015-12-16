@@ -30,7 +30,6 @@ angular.module('rtfmApp')
     }
 
     $scope.upvote = function(threadId, threadVotes) {
-        //var currentUser = userService.getLoggedInUser();
         var newVotes = threadVotes + 1;
         var ref = new Firebase(fb.url);
         var threadRef = ref.child("threads");
@@ -41,7 +40,6 @@ angular.module('rtfmApp')
     }
 
     $scope.downvote = function(threadId, threadVotes) {
-        //var currentUser = userService.getLoggedInUser();
         var newVotes = threadVotes - 1;
         var ref = new Firebase(fb.url);
         var threadRef = ref.child("threads");

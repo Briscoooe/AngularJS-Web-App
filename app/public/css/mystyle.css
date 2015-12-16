@@ -1,0 +1,191 @@
+/* 
+ *
+ * Global styles
+ *
+ */
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  margin-bottom: 50px;
+  background-color: #d9d9d9;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  text-align: center;
+  width: 100%;
+  padding: 20px;
+  color:white;
+  height: 50px;
+  background-color: #246C6C;
+}
+
+.container {
+	margin-top:0px;
+	margin-bottom: 0px;
+}
+
+.jumbotron {
+	min-height: 100px;
+	padding: 10px;
+	margin-bottom:10px;
+	color: white;
+	background-color: #246C6C;
+}
+
+.dark-green-border {
+	border: solid #68A0A0;
+}
+
+.white-background {
+	background: white;
+}
+
+.nav-bar { 
+	border-style: solid;
+	margin-bottom: 10px;
+}
+
+.btn-success {
+	background-color: #115757;
+	border: 0px;
+}
+.btn-success:hover {
+	background:#013D3D;
+}
+
+.btn-success:focus{
+	background:#013D3D;
+}
+
+.btn-success:active{
+	background:#013D3D;
+}
+
+.list-group-item {
+	font-size:11pt;
+}
+
+.subject-label {
+	background:#68A0A0; 
+	color:white;
+	padding:3px
+}
+
+
+/* 
+ *
+ * Images and icons
+ *
+ */
+
+.glyphicon {
+	background: none;
+	border:none
+}
+
+.glyphicon-info {
+	color: #013D3D;
+	margin-right: 1em;
+}
+
+#profile-pic {
+	height:50px;
+	width:50px;
+	margin: 5px;
+}
+
+/* 
+ *
+ *Login page styles
+ *
+ */
+
+#login-div {
+	text-align: center;
+}
+
+#login-options {
+	padding: 10px;
+	margin: 10px;
+	text-align: center;
+}
+
+/* 
+ *
+ * Main page styles
+ *
+ */
+
+ .thread-input {
+ 	margin:5px;
+ }
+
+#search-threads {
+	padding:10px;
+	margin-bottom:10px;
+	margin-top:10px;
+	background-color: #68A0A0;
+}
+
+#main-container {
+	padding:0px;
+	margin-bottom: 10px
+}
+
+#create-thread-btn {
+	height:40px;
+}
+
+#new-thread {
+	padding:10px;
+	background-color: #68A0A0;
+}
+
+#num-comments {
+	background: #68A0A0;
+	height: 100%;
+	width: 12%;
+	font-size: 20pt;
+	color:white ;
+	padding:0px;
+}
+
+#thread-list {
+	padding:0px;
+	margin:0px;
+}
+
+/* 
+ *
+ * Thread page styles
+ *
+ */
+
+.comment {
+	padding:10px;
+	margin:10px;	
+	border-top: thin solid #3F8484;
+	border-bottom: thin solid #3F8484;
+}
+
+#thread-title {
+	margin:0px;
+}
+
+#comment-section {
+	padding:20px;
+	margin-bottom:10px;
+}
+
+#new-comment-btn {
+	height:2em;
+}
+
+#comment-profile {
+	text-align: center;
+	border-right: thin solid #3F8484 ;
+}

@@ -1,0 +1,52 @@
+<div ng-controller="threadPageController">
+    <!-- Nav Bar -->
+    <div class="col-md-12 img-rounded nav-bar dark-green-border white-background">
+        <h3><span class="glyphicon glyphicon-arrow-left glyphicon-info"></span><a href="#/main">Back to main page</a></h3>
+    </div>
+    <!-- End navbar -->
+
+    <!-- Thread container -->
+    <div id="comment-section" class="col-md-12 img-rounded dark-green-border white-background">
+        <legend>
+            <h2 id="thread-title">{{thread.title}}</h2><br>
+        </legend>
+        <h4>
+            <span class="glyphicon glyphicon-calendar glyphicon-info"></span>Posted {{thread.dateAdded | date:'dd-MMM-yyyy HH:mm'}} in <span class="img-rounded subject-label">{{thread.subject}}</span>
+        </h4>
+
+        <!-- Thread comments list -->
+        <div>
+            <div ng-repeat="comment in thread.comments" class="col-md-12 comment">
+
+                <!-- Name and profile picture -->
+                <div id="comment-profile" class="col-md-2">
+                    <img id="profile-pic" class="img-rounded" ng-src="{{comment.userPic | trusted}}"></img><br>
+                    <b>{{comment.username}}</b><br>
+                </div>
+
+                <!-- Comment body -->
+                <div id="comment-body" class="col-md-10">
+                    <span style="position:absolute;top:0px;right:0px">
+                        {{comment.dateAdded | date:'dd-MMM-yyyy HH:mm'}}
+                    </span><br>
+                    {{comment.text}}
+                </div>
+            </div>
+            <!-- End ng-repeat -->
+
+            <!-- If there are no comments on the thread -->
+            <div class="comment" ng-if="!thread.comments.length">There are no comments on this thread yet, be the first one to post below!</div>
+
+            <!-- New comment -->
+            <div id="new-comment" class="col-md-6">
+                <textarea rows="5" cols="50" id="new-thread-comment" ng-model="newComment" placeholder="Enter your comment here..."></textarea><br>
+                <button class="btn-success img-rounded" id="new-comment-btn" ng-click="addComment()">Add Comment</button>
+            </div>
+            <!-- End new-comment -->
+            <span class="col-md-6"></span>
+        </div>
+        <!-- End thread comments list -->
+    </div>
+    <!-- End commments section container -->
+</div>
+<!-- End ng-controller -->

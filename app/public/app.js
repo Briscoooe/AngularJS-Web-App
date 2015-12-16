@@ -1,6 +1,11 @@
-angular.module('rtfmApp', ['ngRoute', 'firebase'])
+angular.module('richWebApp', ['ngRoute', 'firebase', 'objectFilter'])
 .constant('fb', {
   url: 'https://luminous-torch-7000.firebaseio.com/'
+})
+.run(function ($rootScope) {
+    $rootScope.$on('handleEmit', function (event, args) {
+        $rootScope.$broadcast('handleBroadcast', args);
+    });
 })
 .config(function($routeProvider){
         $routeProvider.
@@ -17,3 +22,4 @@ angular.module('rtfmApp', ['ngRoute', 'firebase'])
                 redirectTo: '/login'
             });
 });
+
