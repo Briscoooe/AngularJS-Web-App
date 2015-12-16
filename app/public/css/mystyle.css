@@ -5,22 +5,26 @@
  */
 
 html {
-  position: relative;
-  min-height: 100%;
+ 	position: relative;
+  	min-height: 100%;
 }
 body {
-  margin-bottom: 50px;
-  background-color: #d9d9d9;
+	margin-bottom: 50px;
+	background-color: #d9d9d9;
+}
+
+a {
+	color:#115757;
 }
 .footer {
-  position: absolute;
-  bottom: 0;
-  text-align: center;
-  width: 100%;
-  padding: 20px;
-  color:white;
-  height: 50px;
-  background-color: #246C6C;
+	position: absolute;
+	bottom: 0;
+	text-align: center;
+	width: 100%;
+	padding: 20px;
+	color:white;
+	height: 50px;
+ 	background-color: #246C6C;
 }
 
 .container {
@@ -182,7 +186,7 @@ body {
 }
 
 #new-comment-btn {
-	height:2em;
+	height:3em;
 }
 
 #comment-profile {

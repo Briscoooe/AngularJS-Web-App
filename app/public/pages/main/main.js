@@ -17,11 +17,19 @@ angular.module('richWebApp')
         console.log($scope.threads)
     });
 
-    $scope.users = userService.getLoggedInUsers();
-
     $scope.getSubjects = function(subject) {
         return $scope.threads.subject;
     }
+
+    /*$scope.isLoggedIn = function() {
+        if($firebaseAuth){
+            return true;
+        }
+
+        else {
+            return false;
+        }
+    }*/
 
     $scope.addThread = function(){  
         if(!$scope.newThreadTitle || !$scope.newThreadSubject){

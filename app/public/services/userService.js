@@ -1,7 +1,6 @@
 angular.module('richWebApp')
 .service('userService', function($firebaseArray, $firebaseAuth, fb, $location){
 
-    //Todo: don't hardcode this
     var user = {
         name: ''
     };
@@ -29,8 +28,8 @@ angular.module('richWebApp')
     };
 
     this.loginWithGoogle = function(){
-    	authObj.$authWithOAuthPopup("google").then(function(authData) {
-    		$location.path('main')
+        authObj.$authWithOAuthPopup("google").then(function(authData) {
+            $location.path('main')
             var username = authData.google.displayName;
             var userid = authData.google.id;
             user.name = username
@@ -40,7 +39,7 @@ angular.module('richWebApp')
                 id: userid
             });
         }).catch(function(error) {
-        	console.error("Authentication failed: ", error);
+            console.error("Authentication failed: ", error);
         });
     }
 
