@@ -1,4 +1,5 @@
 // References http://justinklemm.com/angularjs-filter-ordering-objects-ngrepeat/
+// A filter used to filter objects
 angular.module("objectFilter", [])
 .filter('orderObjectBy', function() {
   return function(items, field, reverse) {
@@ -14,6 +15,7 @@ angular.module("objectFilter", [])
   };
 })
 // References https://github.com/angular-ui/angular-ui-OLDREPO/blob/master/modules/filters/unique/unique.js
+// A filter used to filter out duplicate values
 .filter('unique', function () {
 
   return function (items, filterOn) {
@@ -52,6 +54,7 @@ angular.module("objectFilter", [])
     return items;
   };
 })
+// A filter used to allow external images to be shown
 .filter('trusted', ['$sce', function ($sce) {
     return function(url) {
         return $sce.trustAsResourceUrl(url);

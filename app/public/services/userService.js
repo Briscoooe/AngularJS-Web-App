@@ -1,10 +1,12 @@
 angular.module('richWebApp')
 .service('userService', function($firebaseArray, $firebaseAuth, fb, $location){
 
+    // Initialising the username
     var user = {
         name: ''
     };
 
+    // The Firebase object to be used for authorizing the user 
     var ref = new Firebase(fb.url);
     var authObj = $firebaseAuth(ref);
 
@@ -15,18 +17,12 @@ angular.module('richWebApp')
         user.profilePic = info.google.profileImageURL;
     }
 
+    // Function to return the user object
     this.getLoggedInUser = function(){
         return user;
     }
 
-    this.getLoggedInUsers = function(){
-        var info = authObj.$getAuth();
-        var userid = info.google.id;
-        var ref = new Firebase(fb.url + '/users');
-        var array = $firebaseArray(ref);
-        return array;
-    };
-
+    // Function to log into using a Google account
     this.loginWithGoogle = function(){
         authObj.$authWithOAuthPopup("google").then(function(authData) {
             $location.path('main')
@@ -43,10 +39,8 @@ angular.module('richWebApp')
         });
     }
 
+    // Function to log out the user
     this.logout = function() {
-        var info = authObj.$getAuth();
-        var userid = info.google.id;
-        var userRef = new Firebase(fb.url + "/users/" + userid);
         authObj.$unauth()
         $location.path('login');
     }

@@ -1,43 +1,43 @@
 angular.module('richWebApp')
 .controller('mainPageController', function($scope, $location, userService, threadService, fb, $firebaseAuth, $filter){
 
+    // Get the info of the logged in user
     $scope.user = userService.getLoggedInUser();
 
+    // Clear the input fields for thread entry
     $scope.newThreadTitle = '';
-
-    $scope.createNewThread = false;
-
-    $scope.currentThreadId = '';
-
     $scope.threadSubject = ''
 
+    // The variable used to determine whether or not to show the
+    // thread entry form
+    $scope.createNewThread = false;
+
+    // Retrieve the list of threads from the database
     $scope.threads = threadService.getAllThreads();
 
-    $scope.threads.$loaded().then(function(){
-        console.log($scope.threads)
-    });
-
+    // Get the list of subjects from the database
     $scope.getSubjects = function(subject) {
         return $scope.threads.subject;
     }
 
-    /*$scope.isLoggedIn = function() {
-        if($firebaseAuth){
-            return true;
-        }
+    // Function used to display the thread input form
+    $scope.beginAddThread = function() {
+        $scope.createNewThread = true;
+    }
 
-        else {
+    // Function to add a thread to the database
+    $scope.addThread = function(){  
+        // If either of the input fields are empty, don't do anything
+        if(!$scope.newThreadTitle || !$scope.newThreadSubject){
             return false;
         }
-    }*/
 
-    $scope.addThread = function(){  
-        if(!$scope.newThreadTitle || !$scope.newThreadSubject){
-            return false; //Don't do anything if the text box is empty
-        }
-
+        // A new date variable to be used in the database entry
         var date = new Date();
 
+        // The newThread object to be added to the database using
+        // the values of the input fields, the users name, the date and other
+        // relevant information
         var newThread = {       
             title: $scope.newThreadTitle,
             subject: $scope.newThreadSubject,
@@ -47,27 +47,24 @@ angular.module('richWebApp')
             dateAdded: date.getTime()
         };
 
+        // Add the newThread object to the database
         $scope.threads.$add(newThread);
 
+        // Clear the object variable and input fields
         $scope.newThread = '';
+        $scope.newThreadTitle = '';
+        $scope.newThreadSubject =  '';
 
-        $scope.newThreadTitle = ''; //Clear the text in the input box
-
-        $scope.newThreadSubject = '';
-
-        $scope.threadSubject = '';
-
+        // Hide the thread input form
         $scope.createNewThread = false; 
     }
 
-    $scope.beginAddThread = function() {
-        $scope.createNewThread = true;
-    }
-
+    // Function used for searching threads
     $scope.searchSubject = function(subject) {
         $scope.searchThread = subject;
     }
 
+    // Function for the user out
     $scope.logout = function(){
         userService.logout();
     }

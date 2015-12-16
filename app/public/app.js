@@ -1,12 +1,9 @@
 angular.module('richWebApp', ['ngRoute', 'firebase', 'objectFilter'])
+// Delcaring a constant that stores the Firebase string
 .constant('fb', {
   url: 'https://luminous-torch-7000.firebaseio.com/'
 })
-.run(function ($rootScope) {
-    $rootScope.$on('handleEmit', function (event, args) {
-        $rootScope.$broadcast('handleBroadcast', args);
-    });
-})
+// Declaring the routes 
 .config(function($routeProvider){
         $routeProvider.
             when('/login', {
