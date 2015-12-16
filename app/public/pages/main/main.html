@@ -34,9 +34,10 @@
             <!-- Subject List -->
             <div class="list-group">
                 <h2>Subjects</h2>
-                <div ng-model="subjects" ng-repeat="thread in threads | unique:'subject'" class="list-group-item">
+                <div ng-model="subjects" ng-repeat="thread in threads | unique:'subject' as subjectList" class="list-group-item">
                     <a ng-click="searchSubject(thread.subject)" class="list-group-item-text">{{thread.subject}}</a>
                 </div>
+                <span class="col-md-1"></span><div ng-if="subjectList.length === 0"><h3>No subjects to display</h3></div>
             </div>
             <!-- End subject list -->
         </div>
@@ -66,7 +67,7 @@
                     <!-- End comment count -->
                 </div>
                 <!-- End thread loop -->
-                <span class="col-md-1"></span><div ng-if="threadList.length === 0"><h3>No results</h3></div>
+                <span class="col-md-1"></span><div ng-if="threadList.length === 0"><h3>No threads to display</h3></div>
             </div>
         </div>
         <!-- End thread list -->
