@@ -16,6 +16,7 @@ body {
 a {
 	color:#115757;
 }
+
 .footer {
 	position: absolute;
 	bottom: 0;
@@ -140,6 +141,10 @@ a {
 	margin-bottom: 10px
 }
 
+#subject-container {
+	margin-right:5px;
+}
+
 #create-thread-btn {
 	height:40px;
 }
@@ -160,7 +165,9 @@ a {
 
 #thread-list {
 	padding:0px;
+	width:65.7%;
 	margin:0px;
+	margin-left:5px;
 }
 
 /* 
