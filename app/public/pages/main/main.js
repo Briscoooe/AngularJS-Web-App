@@ -12,6 +12,9 @@ angular.module('richWebApp')
     // thread entry form
     $scope.createNewThread = false;
 
+    // Variable used to sort the thread list
+    $scope.sortBy = 'dateAdded'
+
     // Retrieve the list of threads from the database
     $scope.threads = threadService.getAllThreads();
 
@@ -57,6 +60,16 @@ angular.module('richWebApp')
 
         // Hide the thread input form
         $scope.createNewThread = false; 
+    }
+
+    // Function used to sort the thread list by date
+    $scope.sortByDate = function() {
+        $scope.sortBy = 'dateAdded';
+    }
+
+    // Fuction used to sort the thread list by popularity
+    $scope.sortByPopularity = function() {
+        $scope.sortBy = 'numComments';
     }
 
     // Function used for searching threads

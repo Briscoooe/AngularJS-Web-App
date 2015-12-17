@@ -47,8 +47,13 @@
         <!-- Thread list -->
         <div id="thread-list" class="col-md-8 dark-green-border img-rounded white-background">
             <div class="list-group img-rounded">
+                <div class="top-thread">
+                    <h4>Sort threads by 
+                    <button class="btn-success img-rounded" ng-click="sortByPopularity()">Popularity</button>
+                    <button class="btn-success img-rounded" ng-click="sortByDate()">Date</button></h4>
+                </div>
                 <!-- Display thread loop -->
-                <div ng-repeat="thread in threads | filter:searchThread | orderObjectBy:'votes' as threadList" class="list-group-item col-md-12">
+                <div ng-repeat="thread in threads | filter:searchThread | orderObjectBy:sortBy as threadList" class="list-group-item col-md-12">
                     <!-- Thread div -->
                     <div class="col-md-10">
                         <span class="glyphicon glyphicon-bullhorn glyphicon-info"></span>
@@ -67,7 +72,7 @@
                     <!-- End comment count -->
                 </div>
                 <!-- End thread loop -->
-                <span class="col-md-1"></span><div ng-if="threadList.length === 0"><h3>No threads to display</h3></div>
+                <span class="col-md-1"></span><div class="top-thread" ng-if="threadList.length === 0"><h3>No threads to display</h3></div>
             </div>
         </div>
         <!-- End thread list -->

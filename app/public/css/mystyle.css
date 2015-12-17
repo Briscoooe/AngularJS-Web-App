@@ -129,6 +129,10 @@ a {
  	margin:5px;
  }
 
+ .top-thread {
+	padding-left:15px;
+}
+
 #search-threads {
 	padding:10px;
 	margin-bottom:10px;
@@ -173,6 +177,8 @@ a {
 	margin:0px;
 	margin-left:5px;
 }
+
+
 
 /* 
  *
