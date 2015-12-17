@@ -1,5 +1,5 @@
 angular.module('richWebApp')
-.controller('mainPageController', function($scope, $location, userService, threadService, fb, $firebaseAuth, $filter){
+.controller('mainPageController', function($scope, $location, userService, Auth, threadService, fb, $firebaseAuth, $filter){
 
     // Get the info of the logged in user
     $scope.user = userService.getLoggedInUser();

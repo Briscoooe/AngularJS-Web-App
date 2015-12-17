@@ -1,5 +1,5 @@
 angular.module('richWebApp')
-.controller('threadPageController', function($scope, $location, $routeParams, $filter, threadService, fb, userService){
+.controller('threadPageController', function($scope, $location, $routeParams, $filter, Auth, threadService, fb, userService){
 
     // Obtain the ID from the URL 
     var threadId = $routeParams.threadId;
