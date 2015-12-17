@@ -103,21 +103,42 @@ a {
 	margin: 5px;
 }
 
+#online-icon {
+	height:10px;
+	width:10px;
+	margin-right:10px;
+}
+
 /* 
  *
  *Login page styles
  *
  */
 
-#login-div {
+.login-options {
+	padding: 10px;
+	margin: 0px;
+	margin-right:5px;
+	margin-bottom: 10px;
 	text-align: center;
 }
 
-#login-options {
-	padding: 10px;
-	margin: 10px;
+#login-div {
 	text-align: center;
+	padding:0px;
 }
+
+#login-list {
+	margin-left:5px;
+	width:49%;
+	padding:0px;
+}
+
+#login-left-container {
+	margin:0px;
+	padding:0px;
+	margin-right: 5px
+} 
 
 /* 
  *
@@ -193,7 +214,7 @@ a {
 	border-bottom: thin solid #3F8484;
 }
 
-#thread-title {
+.thread-title {
 	margin:0px;
 }
 

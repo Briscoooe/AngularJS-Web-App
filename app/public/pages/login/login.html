@@ -1,12 +1,34 @@
 <div ng-controller="loginPageController" id="login-div" class="col-md-12">
-	<span class="col-md-3"></span>
+	<!-- Begin left-container -->
+	<div id="login-left-container" class="col-md-6">
+		<!-- Begin main div -->
+		<div id="login-options" class="col-md-12 login-options img-rounded white-background dark-green-border">
+			<h3>Please login to view the forum contents</h3>
+		    <input type="image" class="row-fluid" src="images/google_login.png" ng-click="loginWithGoogle()" />
+		</div>
+		<!-- End main div -->
 
-	<!-- Begin main div -->
-	<div id="login-options" class="col-md-6 img-rounded white-background">
-		<h3>Please login using the Google option below</h3>
-	    <input type="image" class="row-fluid" src="images/google_login.png" ng-click="loginWithGoogle()" />
+		<!-- Begin online users div -->
+		<div class="col-md-12 login-options img-rounded white-background dark-green-border">
+			<legend class="thread-title"><h1>Currently Active users</h1></legend>
+			<div ng-repeat="user in activeUsers as userList" class="col-md-12">
+				<h3 class="col-md-6"><img id="online-icon" src="images/online_icon.jpg">{{user.name}}<h3>
+				<span class="col-md-6"></span>
+			</div>
+			<span class="col-md-1"></span><div ng-if="userList.length === 0"><h3>No users currently online</h3></div>
+		</div>
+		<!-- End online users div -->
 	</div>
-	<!-- End main div -->
-	<span class="col-md-3"></span>
+	<!-- End left container -->
+
+	<!-- Subject List -->
+    <div id="login-list" class="list-group col-md-6 white-background img-rounded dark-green-border">
+        <h2>Subjects in this forum</h2>
+        <div ng-model="subjects" ng-repeat="thread in threads | unique:'subject' as subjectList" class="list-group-item">
+        	<h4>{{thread.subject}}</h4>
+        </div>
+        <span class="col-md-1"></span><div ng-if="subjectList.length === 0"><h3>No subjects to display</h3></div>
+    </div>
+    <!-- End subject list -->
 </div>
 <!-- End ng-controller -->
