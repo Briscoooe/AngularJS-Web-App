@@ -3,14 +3,14 @@
 	<div id="login-left-container" class="col-md-6">
 		<!-- Begin main div -->
 		<div id="login-options" class="col-md-12 login-options img-rounded white-background dark-green-border">
-			<h3>Please login to view the forum contents</h3>
+			<h2>Please login to view the forum contents</h2>
 		    <input type="image" class="row-fluid" src="images/google_login.png" ng-click="loginWithGoogle()" />
 		</div>
 		<!-- End main div -->
 
 		<!-- Begin online users div -->
 		<div class="col-md-12 login-options img-rounded white-background dark-green-border">
-			<legend class="thread-title"><h1>Currently Active users</h1></legend>
+			<legend class="thread-title"><h2>Currently active users</h2></legend>
 			<div ng-repeat="user in activeUsers as userList" class="col-md-12">
 				<h3 class="col-md-6"><img id="online-icon" src="images/online_icon.jpg">{{user.name}}<h3>
 				<span class="col-md-6"></span>

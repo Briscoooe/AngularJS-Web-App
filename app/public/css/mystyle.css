@@ -94,7 +94,7 @@ a {
 
 .glyphicon-info {
 	color: #013D3D;
-	margin-right: 1em;
+	margin-left: 1em;
 }
 
 #profile-pic {
@@ -139,6 +139,10 @@ a {
 	padding:0px;
 	margin-right: 5px
 } 
+
+#user-list-row {
+	position:;
+}
 
 /* 
  *
