@@ -92,6 +92,10 @@ a {
 	border:none
 }
 
+.glyphicon-bullhorn {
+	margin-right:1em;
+}
+
 .glyphicon-info {
 	color: #013D3D;
 	margin-left: 1em;

@@ -56,7 +56,7 @@
                 <div ng-repeat="thread in threads | filter:searchThread | orderObjectBy:sortBy as threadList" class="list-group-item col-md-12">
                     <!-- Thread div -->
                     <div class="col-md-10">
-                        <span class="glyphicon glyphicon-bullhorn glyphicon-info"></span>
+                        <span class="glyphicon glyphicon-bullhorn"></span>
                         <a ng-href="#/thread/{{thread.$id}}" class="list-group-item-text" href ng-click="showThread(thread)">
                         <span style="font-size:20pt">{{thread.title}}</span><br></a>
                         <span class="img-rounded subject-label">{{thread.subject}}</span>
